@@ -5,6 +5,11 @@
 
 [Once its finished] Dado will make use many of AWS's fully managed services. They handle all upgrades load balancing and provisioning - while you get to rely on their uptime SLA's
 
-- S3 serves static content, supporting files and the router.
-- API gateway manages admin + frontend requests through to Lambda functions.
-- DynamoDB data tier.
+Solution Map:
+- Site bucket nakeddomain.name
+  - Serve static pages.
+  - Subdir "protected" - router will request from API - will return content or 400.
+- DynamoDB
+  - Users
+  - Pages/Partials/Entries
+    - Each update to this table will rebuild affected pages into bucket.
