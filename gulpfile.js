@@ -13,6 +13,15 @@ gulp.task("admin-dev-server", function(callback) {
     var compiler = webpack( webpackConfig );
     new WebpackDevServer(compiler, {
         // server and middleware options
+        contentBase: "./admin/build/",
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        stats: {
+          colors: true
+        },
+        poll: 3000
     }).listen(8080, "localhost", function(err) {
         if(err) throw new gutil.PluginError("webpack-dev-server", err);
         // Server listening
